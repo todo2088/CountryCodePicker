@@ -1,3 +1,8 @@
+## 3.0.1 
+
+- dart 3.0.0 null safely
+- dart sdk: '>=2.12.0 <4.0.0'
+
 ## 3.0.0 - March 10 2023
 
 - Support Flutter 3.7.0

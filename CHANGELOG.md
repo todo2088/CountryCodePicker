@@ -1,3 +1,7 @@
+## 3.0.2
+
+- Hide favorite at the time of searching
+
 ## 3.0.1 
 
 - dart 3.0.0 null safely

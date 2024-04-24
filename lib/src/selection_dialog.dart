@@ -33,6 +33,9 @@ class SelectionDialog extends StatefulWidget {
 
   final EdgeInsetsGeometry searchPadding;
 
+  ///Hide favorite at the time of searching
+  final bool hideFavoriteOnSearch;
+
   SelectionDialog(
     this.elements,
     this.favoriteElements, {
@@ -54,6 +57,7 @@ class SelectionDialog extends StatefulWidget {
     this.closeIcon,
     this.dialogItemPadding = const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
     this.searchPadding = const EdgeInsets.symmetric(horizontal: 24),
+    this.hideFavoriteOnSearch = false,
   })  : searchDecoration = searchDecoration.prefixIcon == null
             ? searchDecoration.copyWith(prefixIcon: const Icon(Icons.search))
             : searchDecoration,
@@ -66,7 +70,7 @@ class SelectionDialog extends StatefulWidget {
 class _SelectionDialogState extends State<SelectionDialog> {
   /// this is useful for filtering purpose
   late List<CountryCode> filteredElements;
-
+  String _searchFilter = "";
   @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.all(0.0),
@@ -111,7 +115,9 @@ class _SelectionDialogState extends State<SelectionDialog> {
               Expanded(
                 child: ListView(
                   children: [
-                    widget.favoriteElements.isEmpty
+                    (widget.favoriteElements.isEmpty ||
+                            (widget.favoriteElements.isNotEmpty && widget.hideFavoriteOnSearch &&
+                                _searchFilter.isNotEmpty))
                         ? const DecoratedBox(decoration: BoxDecoration())
                         : Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -207,6 +213,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
   void _filterElements(String s) {
     s = s.toUpperCase();
     setState(() {
+      _searchFilter = s;
       filteredElements = widget.elements
           .where((e) =>
               e.code!.contains(s) ||

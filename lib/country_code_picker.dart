@@ -92,6 +92,9 @@ class CountryCodePicker extends StatefulWidget {
 
   final EdgeInsetsGeometry searchPadding;
 
+  ///Hide favorite at the time of searching
+  final bool hideFavoriteOnSearch;
+
   const CountryCodePicker({
     this.onChanged,
     this.onInit,
@@ -129,6 +132,7 @@ class CountryCodePicker extends StatefulWidget {
     this.countryList = codes,
     this.dialogItemPadding = const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
     this.searchPadding = const EdgeInsets.symmetric(horizontal: 24),
+    this.hideFavoriteOnSearch = false,
     Key? key,
   }) : super(key: key);
 
@@ -320,6 +324,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
             flagDecoration: widget.flagDecoration,
             dialogItemPadding: widget.dialogItemPadding,
             searchPadding: widget.searchPadding,
+            hideFavoriteOnSearch: widget.hideFavoriteOnSearch,
           ),
         ),
       ),

@@ -147,6 +147,7 @@ class MyAppState extends State<MyApp> {
                   showCountryOnly: false,
                   showOnlyCountryWhenClosed: true,
                   favorite: const ['+39', 'FR'],
+                  hideFavoriteOnSearch: true,
                 ),
               ),
               SizedBox(
